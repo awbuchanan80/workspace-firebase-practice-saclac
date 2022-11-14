@@ -16,13 +16,22 @@ firebase.initializeApp(firebaseConfig);
 // enter data in
 $("input[type='button']").click(function (e) {
   //get the value of form
+  var inputdata = $('form').serializeArray();
+  var data = {};
+  console.log(inputdata[2]);
+  console.log(inputdata[2].name);
+  console.log(inputdata[2].value);
 
+  inputdata.forEach((entry) => {
+    console.log(entry);
+    data[entry.name] = entry.value;
+  });
+  console.log(data);
   /* save the data to database */
 
   /* clear the entry */
   $('form')[0].reset();
 });
-
 
 /* array example
 const array1 = ['a', 'b', 'c'];
