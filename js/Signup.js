@@ -18,8 +18,8 @@ $("#signup-form").submit(function(e) {
 
   //THIS IS WHERE WE ARE 11/16/22
   
-  var email = document.getElementById('#email').val();
-  var password = document.getElementById('#password').val();;
+  var email = $('#email').val();
+  var password = $('#password').val();
 
   // create a user with email address and password
   firebase

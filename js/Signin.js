@@ -15,9 +15,9 @@ $('#Login').submit(function (e) {
   e.preventDefault();
   // get the user name and password from form
   // You need to change this.
-  var email = 'yilianz4@gmail.com';
-  var password = 'ddsgagafda';
-
+  var email = $('#login').val();
+  var password = $('#pwd').val();
+console.log("email: "+email+ " and pwd: "+password);
   firebase
     .auth()
     .signInWithEmailAndPassword(email, password)
@@ -26,6 +26,7 @@ $('#Login').submit(function (e) {
       // ...
       console.log('login in');
       let user = firebase.auth().currentUser;
+      window.location.href="Surveyresult.html";
 
       //user.updateProfile({ displayName: "Not sure" });
       if (user != null) {
@@ -42,5 +43,17 @@ $('#Login').submit(function (e) {
       var errorMessage = error.message;
       console.log(errorMessage);
     });
+});
+
+$('#Google').click(function(){
+  const provider = new firebase.auth.GoogleAuthProvider();
+  firebase.auth().signInWithPopup(provider).then((result)=>{
+    const user = result.user;
+    console.log("Google User "+user.email+" Log in");
+    console.log('login in');
+    window.location.href="Surveyresult.html";
+  }).catch((error)=>{
+    console.log("Error Message "+error.message);
+  });
 });
 
