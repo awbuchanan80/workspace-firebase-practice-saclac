@@ -124,7 +124,9 @@ input[type="password"] {
 
 input[type="submit"],
 input[type="button"],
-input[type="reset"] {
+input[type="reset"],
+input[type="google"],
+input[type="signout"]{
   margin: 20px auto;
   display: inline-block;
   text-align: center;
