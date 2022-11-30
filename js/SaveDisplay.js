@@ -12,6 +12,17 @@ var firebaseConfig = {
 // Initialize Firebase
 firebase.initializeApp(firebaseConfig);
 
+firebase.auth().onAuthStateChanged((user) => {
+  if (user) {
+    console.log(user.email);
+    // ...
+  } else {
+    // User is signed out
+   console.log('no user');
+   window.location.href = 'index.html';
+  }
+});
+
 // save the data
 $(".sampleSurvey input[type='submit']").click(function (e) {
   e.preventDefault();
@@ -27,6 +38,29 @@ $(".sampleSurvey input[type='submit']").click(function (e) {
   firebase.firestore().collection('surveydata').add(sdata);
 
   // get the value of the form using serializeArray method
+});
+
+$('#signout').click(function(){
+  firebase
+    .auth()
+    .signOut()
+    .then(() => {
+      window.location.href = 'index.html';
+    }).catch((error) => {
+      console.log(error.message)
+    });
+});
+
+firebase
+.firestore()
+.collection('surveydata')
+.onSnapshot((querySnapshot) => {
+  console.log(querySnapshot.size);
+  querySnapshot.forEach((doc) => {
+    console.log(doc.data());
+    console.log(doc.data().choice);
+    console.log(doc.data().comm);
+  });
 });
 
 // update the result in table
