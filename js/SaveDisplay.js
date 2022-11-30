@@ -40,6 +40,7 @@ $(".sampleSurvey input[type='submit']").click(function (e) {
   // get the value of the form using serializeArray method
 });
 
+//updated 11/30/22
 $('#signout').click(function(){
   firebase
     .auth()
